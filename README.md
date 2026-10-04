@@ -39,8 +39,9 @@ git clone https://github.com/maxzeoo/movie_SQL.git
 cd movie_SQL
 ```
 
-2. 准备原始数据集（为movie_recommend项目ml_1m.zip文件），放入原始文件夹
-3. 运行 Python 脚本，自动生成数据库
+2. 准备原始数据集(来自 movie_recommend 项目的 ml_1m 数据)
+3. 修改 main.py 中三处数据源路径,指向你本地的 users.dat / movies.dat / ratings.dat
+4. 运行 python main.py
 
 ```
 python main.py
@@ -60,7 +61,7 @@ sqlite3 movie.db
 ```
 
 > 
-> 注意：`queries.sql`包含多条 SELECT 语句，一次性执行只会输出最后一条结果。建议一次复制一题单独执行。
+> 注意：`queries.sql`包含多条 SELECT 语句，建议一次复制一题单独执行。
 
 ##  queries.sql 题目清单
 
@@ -99,4 +100,4 @@ sqlite3 movie.db
 ## 优化方向
 
 1. main.py代码指定了数据集来源地址，未做相对路径优化。
-2. 批量插入时插入失败仅为单个表格出错提示一次，具体代码仅精确到1000条内，可在出现报错时回退，找出坏行，本代码尚未完善。
+2. 具体影响:executemany 一批 1000 条,任一条失败会导致整批被跳过(不知道坏的是哪几条);且失败后事务可能已不可用,后续插入会连带失败。 正确做法:捕获异常后先 conn.rollback(),再回退到逐条插入,把坏行和行号打出来。
