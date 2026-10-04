@@ -47,9 +47,9 @@ cd movie_SQL
 python main.py
 ```
 
-执行完成后，目录会生成 `movie.db` 文件（movie.db 是脚本生成产物,已随仓库提供以方便直接查询;如需重建,运行 python main.py 覆盖）。
+执行完成后，目录会生成 `movie.db` 文件（movie.db 是脚本生成产物,已随仓库提供以方便直接查询;解压 movie.zip 得到 movie.db(或自己跑 python main.py 生成)）。
 
-4. 执行 SQL 查询
+5. 执行 SQL 查询
 
 > 
 > 方式 1：使用 DB Browser for SQLite 打开 movie.db，复制`queries.sql`中单条 SQL 执行
@@ -91,7 +91,7 @@ sqlite3 movie.db
 
 ##  注意事项
 
-1. 一次性执行全部 SQL 脚本只会返回最后一题结果，**推荐单题独立运行**
+1. 用 sqlite3 的 .read 执行整个脚本,会依次打印每一条的结果;DB Browser for SQLite 的 SQL 窗口一次性执行时只显示最后一条,所以用图形工具时建议单题独立运行。
 2. 数据库文件`movie.db`是 Python 脚本生成产物，不需要手动写建表语句
 3. 年份提取采用字符串截取方案，提供两种想法（固定末尾截取 / 括号内提取），后者鲁棒性更强，但本文由于数据集来源可靠稳定仅靠固定结尾截取。
 4. 递归 CTE 为 SQLite 语法，MySQL8.0 + 也支持；低版本数据库不支持递归 CTE
