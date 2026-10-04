@@ -19,9 +19,8 @@
 ```
 .
 ├── main.py                # Python脚本：读取原始数据，生成movie.db数据库
-├── movie.db               # SQLite数据库文件（生成产物，可本地直接打开）
+├── movie.zip               # SQLite数据库文件压缩（生成产物，可本地直接打开）
 ├── queries.sql            # 10条分析SQL，对应10个业务分析题目
-├── raw_data/              # 原始MovieLens数据集文件夹（csv数据）
 └── README.md              # 项目说明文档
 ```
 
@@ -37,17 +36,17 @@
 
 ```
 git clone https://github.com/maxzeoo/movie_SQL.git
-cd movie-sql-analysis
+cd movie_SQL
 ```
 
-2. 准备原始数据集，放入`raw_data`文件夹
+2. 准备原始数据集（为movie_recommend项目ml_1m.zip文件），放入原始文件夹
 3. 运行 Python 脚本，自动生成数据库
 
 ```
 python main.py
 ```
 
-执行完成后，目录会生成 `movie.db` 文件。
+执行完成后，目录会生成 `movie.db` 文件（movie.db 是脚本生成产物,已随仓库提供以方便直接查询;如需重建,运行 python main.py 覆盖）。
 
 4. 执行 SQL 查询
 
